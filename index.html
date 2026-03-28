@@ -468,15 +468,162 @@
   .pval { font-weight: 700; color: var(--text-dark); }
   .pstrike { text-decoration: line-through; color: var(--text-light); font-size: 0.78rem; }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 1080px) {
-    .grid { grid-template-columns: repeat(2, 1fr); align-items: stretch; }
+  /* ════════════════════════════════════════════════
+     RESPONSIVE BREAKPOINTS
+     Desktop  : 4-col grid  (> 1024px)  — base styles above
+     Tablet   : 2×2 grid    (≤ 1024px)
+     Mobile   : 1-col stack (≤ 768px)
+  ════════════════════════════════════════════════ */
+
+  /* ── TABLET: 2 × 2 grid (769px – 1024px) ── */
+  @media (max-width: 1024px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+      align-items: stretch;
+      gap: 1.25rem;
+    }
+
+    /* On tablet each pair of cards shares a row → equal-height per row via stretch */
+    .card { height: 100%; }
+
+    .page { padding: 2.5rem 1.5rem 3.5rem; }
+
+    .comp-section { padding: 0 1.5rem 3rem; }
   }
 
-  @media (max-width: 580px) {
-    .grid { grid-template-columns: 1fr; align-items: stretch; }
-    header { padding: 0 1.25rem; }
-    .page { padding: 2rem 1rem 3rem; }
+  /* ── MOBILE: single column stack (≤ 768px) ── */
+  @media (max-width: 768px) {
+
+    /* Grid becomes a single column with clear vertical gap between cards */
+    .grid {
+      grid-template-columns: 1fr;
+      align-items: stretch;
+      gap: 1.5rem;          /* generous vertical spacing — cards never touch */
+    }
+
+    /* On single-column each card is standalone — height:auto is correct */
+    .card { height: auto; }
+
+    /* ── Header tightening ── */
+    header {
+      padding: 0 1rem;
+      height: 56px;
+    }
+
+    .logo-name   { font-size: 0.78rem; }
+    .logo-tagline { font-size: 0.55rem; }
+
+    /* ── Page padding ── */
+    .page {
+      padding: 1.75rem 1rem 2.5rem;
+    }
+
+    /* ── Page heading ── */
+    .page-heading { margin-bottom: 1.75rem; }
+
+    .page-heading h1 {
+      font-size: 1.45rem;       /* prevent overflow on narrow screens */
+      letter-spacing: -0.3px;
+    }
+
+    .page-heading p  { font-size: 0.88rem; }
+
+    .page-heading .promo-tag {
+      font-size: 0.72rem;
+      padding: 4px 12px;
+    }
+
+    /* ── Card header: tighter padding on mobile ── */
+    .card-header {
+      padding: 1.25rem 1.25rem 1rem;
+    }
+
+    /* Scale down card title so long names ("Finance Premium") never overflow */
+    .card-title {
+      font-size: 1.15rem;
+    }
+
+    /* Scale down the large price number slightly */
+    .price-amount {
+      font-size: 1.9rem;
+      letter-spacing: -0.5px;
+    }
+
+    .price-currency { font-size: 1rem; }
+
+    /* ── Features: tighter padding ── */
+    .card-features {
+      padding: 1rem 1.25rem;
+    }
+
+    .feature-item {
+      font-size: 0.78rem;
+      padding: 0.5rem 0.65rem;
+    }
+
+    /* ── CTA: full-width, finger-friendly touch target ── */
+    .card-cta {
+      padding: 0.9rem 1.25rem 1.25rem;
+    }
+
+    .btn-get-started {
+      width: 100%;                /* explicit full-width restatement */
+      padding: 16px 1rem;         /* taller touch target — minimum 48px height */
+      font-size: 1rem;
+      border-radius: 10px;
+      /* Disable the subtle scale hover on touch — avoids flicker on iOS */
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* ── Decorative shapes scaled for mobile (prevent overflow) ── */
+    body::before {
+      width: 100px;
+      height: 36px;
+      left: -30px;
+    }
+
+    body::after {
+      width: 120px;
+      height: 40px;
+      right: -20px;
+    }
+
+    .shape-extra-1 {
+      width: 90px;
+      height: 30px;
+      right: 10px;
+    }
+
+    /* ── Comparison table: allow horizontal scroll on mobile ── */
+    .comp-section {
+      padding: 0 1rem 2.5rem;
+    }
+
+    .comp-section h2 { font-size: 1.1rem; }
+
+    .comp-table th,
+    .comp-table td {
+      padding: 0.65rem 0.6rem;
+      font-size: 0.76rem;
+    }
+
+    .comp-table th { font-size: 0.72rem; }
+  }
+
+  /* ── EXTRA SMALL: very narrow phones (≤ 380px) ── */
+  @media (max-width: 380px) {
+    .page { padding: 1.25rem 0.75rem 2rem; }
+
+    .card-header  { padding: 1rem 1rem 0.85rem; }
+    .card-features { padding: 0.85rem 1rem; }
+    .card-cta     { padding: 0.75rem 1rem 1rem; }
+
+    .card-title   { font-size: 1.05rem; }
+    .price-amount { font-size: 1.7rem; }
+
+    .btn-get-started { padding: 15px 1rem; }
+
+    .page-heading h1 { font-size: 1.25rem; }
   }
 </style>
 </head>
